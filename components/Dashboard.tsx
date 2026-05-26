@@ -21,7 +21,8 @@ export function Dashboard() {
   const queue = getQueue(patients);
   const appts = getAppointments(patients);
   const done = getCompleted(patients);
-  const flagged = useChatStore(s => s.conversations.filter(c => c.flagged && c.status === 'OPEN'));
+  const conversations = useChatStore(s => s.conversations);
+  const flagged = conversations.filter(c => c.flagged);
   const hasFlagged = flagged.length > 0;
 
   const displayed = tab === 'queue' ? queue : tab === 'appointments' ? appts : tab === 'completed' ? done : [];
